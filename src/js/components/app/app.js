@@ -1,14 +1,17 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import Header from "../header";
+import { useSelector } from "react-redux";
+import Header from "./../header";
+import Routing from "./../routing";
 
 const App = () => {
+    const state = useSelector(state => state);
+    console.log(state);
     return (
         <div className="container">
             <div className="wrapper">
                 <Header />
                 <main className="main">
-                    
+                    <Routing />
                 </main>
             </div>
         </div>

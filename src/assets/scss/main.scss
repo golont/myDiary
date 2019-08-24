@@ -124,7 +124,11 @@ section,
 }
 
 .main {
+    z-index: 1;
+    position: relative;
     padding-top: 120px;
+    min-height: 100vh;
+    height: 100%;
 }
 
 // Modules
@@ -132,3 +136,4 @@ section,
 @import "modules/header";
 @import "modules/header-click";
 @import "modules/burger";
+@import "modules/login";

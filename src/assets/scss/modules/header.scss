@@ -1,4 +1,5 @@
 .header {
+    z-index: 3;
     position: fixed;
     height: 110px;
     background: $neutral-menu;
@@ -36,7 +37,7 @@
             }
 
             a {
-                color: rgb(83, 83, 83);
+                color: $primary-color;
             }
         }
     }
@@ -77,11 +78,13 @@
 
         &__nav.active {
             right: 0;
+            z-index: 3;
         }
 
         &__hamburger {
             display: flex;
             align-items: center;
+            z-index: 4;
         }
     }
 }
