@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const HamburgerMenu = ({toggleActiveHandler}) => {
     return (
@@ -18,6 +19,11 @@ const HamburgerMenu = ({toggleActiveHandler}) => {
             </label>
         </div>
     );
+};
+
+
+HamburgerMenu.propTypes = {
+    toggleActiveHandler: PropTypes.func.isRequired
 };
 
 export default HamburgerMenu;
