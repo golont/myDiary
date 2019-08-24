@@ -44,7 +44,7 @@ $orange: #d99d61;
 
                     &:hover,
                     &:focus {
-                        span {
+                        a {
                             background-color: lighten($orange, 3%);
                         }
                     }
