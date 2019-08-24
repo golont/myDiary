@@ -28,6 +28,7 @@ html {
 }
 
 body {
+    background: url("/assets/img/background.jpg") center center/cover fixed;
     margin: 0;
     padding: 0;
     font-family: $mainFont;
@@ -105,6 +106,29 @@ section,
     }
 }
 
+@media screen and (max-width: $smDesktopWidth) {
+    body {
+        background: url("/assets/img/background.jpg") left center;
+        background-attachment: fixed;
+    }
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background: $neutral-container;
+    border-left: 5px solid $border-color;
+    border-right: 5px solid $border-color;
+    position: relative;
+}
+
+.main {
+    padding-top: 120px;
+}
 
 // Modules
 // @import "modules/my-module";
+@import "modules/header";
+@import "modules/header-click";
+@import "modules/burger";
