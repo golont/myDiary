@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Navigation = ({ isActive }) => {
+const Navigation = ({ isActive, isLogged }) => {
     return (
         <nav className={isActive ? "header__nav active" : "header__nav"}>
             <ul className="header__nav-items">
@@ -18,12 +18,16 @@ const Navigation = ({ isActive }) => {
                 </li>
                 <li className="header__nav-item">
                     <button>
-                        <Link to="/login">Login</Link>
+                        <Link to="/about">About</Link>
                     </button>
                 </li>
                 <li className="header__nav-item">
                     <button>
-                        <Link to="/logout">Logout</Link>
+                        {isLogged ? (
+                            <Link to="/logout">Logout</Link>
+                        ) : (
+                            <Link to="/login">Login</Link>
+                        )}
                     </button>
                 </li>
             </ul>
@@ -32,11 +36,13 @@ const Navigation = ({ isActive }) => {
 };
 
 Navigation.propTypes = {
-    isActive: PropTypes.bool
+    isActive: PropTypes.bool,
+    isLogged: PropTypes.bool
 };
 
 Navigation.defaultProps = {
-    isActive: false
+    isActive: false,
+    isLogged: false
 };
 
 export default Navigation;

@@ -5,10 +5,15 @@ const updateUser = ({ user }, { type, payload }) => {
         case Actions.USER_LOGINING:
             return {
                 isLoggedIn: true,
-                name: payload
-            } 
+                name: payload.trim()
+            };
+        case Actions.USER_LOGINING_OUT:
+            return {
+                isLoggedIn: false,
+                name: null
+            };
         default:
-            return user
+            return user;
     }
 };
 

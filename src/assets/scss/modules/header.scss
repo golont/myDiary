@@ -20,17 +20,19 @@
     }
 
     &__nav {
-        width: 50%;
+        width: 650px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
 
         &-items {
             display: flex;
+            width: 100%;
+            justify-content: space-around;
         }
 
         &-item {
-            margin-right: 40px;
+            width: 125px;
 
             button {
                 background: $neutral-menu;
@@ -52,6 +54,7 @@
 @media screen and (max-width: $tableWidth) {
     .header {
         &__nav {
+            width: 50%;
             transition: .6s all;
             position: absolute;
             top: 0;
@@ -70,6 +73,7 @@
             }
 
             &-item {
+                width: auto;
                 margin: 0;
                 padding: 15px;
                 border-bottom: 2px solid $border-color;

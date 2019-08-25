@@ -1,28 +1,20 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { loginTimeout } from "../../../redux/actions/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-const Login = () => {
-    const dispatch = useDispatch();
-    const [username, setUsername] = useState("");
-    const onChangeHandler = event => {
-        setUsername(event.target.value);
-    };
-
-    const onSubmitHandler = event => {
-        event.preventDefault();
-        loginTimeout(1000)(dispatch);
-    };
-
+const Login = ({ onSubmit, isValid, name, onChange, focus }) => {
     return (
         <section className="login">
-            <form className="login__form" onSubmit={onSubmitHandler}>
-                <br />
+            <form className="login__form" onSubmit={onSubmit}>
                 <input
+                    className={isValid ? "" : "invalid"}
                     type="text"
                     placeholder="username"
-                    value={username}
-                    onChange={onChangeHandler}
+                    value={name}
+                    onChange={onChange}
+                    ref={focus}
                 />
                 <button>Login</button>
             </form>
@@ -30,4 +22,53 @@ const Login = () => {
     );
 };
 
-export default Login;
+Login.propTypes = {
+    onSubmit: PropTypes.func,
+    onChnage: PropTypes.func,
+    isValid: PropTypes.bool,
+    name: PropTypes.string,
+    focus: PropTypes.object
+};
+
+const LoginContainer = () => {
+    const dispatch = useDispatch();
+    const isLogged = useSelector(state => state.user.isLoggedIn);
+    const [username, setUsername] = useState("");
+    const [isValidUsername, setIsValidUsername] = useState(true);
+
+    const onChangeHandler = event => {
+        setUsername(event.target.value);
+        setIsValidUsername(true);
+    };
+
+    const validateUsername = username => {
+        const isValid = username.trim().length > 0;
+        return isValid;
+    };
+
+    const usernameInput = React.createRef();
+    const onSubmitHandler = event => {
+        event.preventDefault();
+
+        if (validateUsername(username)) {
+            loginTimeout(username)(1000)(dispatch);
+            return;
+        }
+        setIsValidUsername(false);
+        usernameInput.current.focus();
+    };
+
+    if (isLogged) return <Redirect to="/" />;
+
+    return (
+        <Login
+            onSubmit={onSubmitHandler}
+            name={username}
+            isValid={isValidUsername}
+            onChange={onChangeHandler}
+            focus={usernameInput}
+        />
+    );
+};
+
+export default LoginContainer;
