@@ -7,52 +7,5 @@
         padding: 10px;
         width: 320px;
         text-align: center;
-
-        input {
-            transition: .5s;
-            text-align: center;
-            margin-top: 60px;
-            padding: 10px;
-            width: 100%;
-            background: none;
-            border: 3px solid rgba(0, 0, 0, 0);
-            border-bottom: 3px solid $border-color;
-            color: $primary-color;
-
-            &:focus {
-                border: 3px solid $neutral-menu;
-            }
-
-            &.invalid {
-                box-shadow: inset 0px 0px 15px 5px $danger-color, 0px 0px 15px 5px $border-color;
-                border: 3px solid $danger-color;
-                border-radius: 5px;
-
-                &::placeholder {
-                    color: $secondary-color;
-                }
-            }
-
-        }
-
-        button {
-            text-transform: uppercase;
-            transition: .5s;
-            margin-top: 50px;
-            font-size: rem(30);
-            padding: 10px 20px;
-            background: none;
-            cursor: pointer;
-
-            &:focus,
-            &:hover {
-                padding-left: 25px;
-                padding-right: 25px;
-                border-radius: 10px;
-                background: $warning-color;
-                color: $primary-color;
-                box-shadow: -5px 5px 10px rgba(0, 0, 0, .2);
-            }
-        }
     }
 }

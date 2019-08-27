@@ -31,13 +31,30 @@ const updateData = ({ data }, { type, payload }) => {
                 loading: false,
                 error: false,
                 lastPost: payload[payload.length - 1],
-                previousPosts: payload.slice(0, -1)
+                previousPosts: payload.slice(0, -1),
+                total: payload.length
             };
         case Actions.AUTHENTICATE_USER_FAILURE:
             return {
                 ...data,
                 loading: false,
                 error: true
+            };
+        case Actions.ON_TITLE_CHANGE:
+            return {
+                ...data,
+                lastPost: {
+                    ...data.lastPost,
+                    title: payload
+                }
+            };
+        case Actions.ON_TEXT_CHANGE:
+            return {
+                ...data,
+                lastPost: {
+                    ...data.lastPost,
+                    text: payload
+                }
             };
         default:
             return data;

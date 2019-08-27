@@ -48,3 +48,20 @@ export const userLoginingOut = () => {
         type: USER_LOGINING_OUT
     };
 };
+
+
+export const ON_TITLE_CHANGE = "ON_TITLE_CHANGE";
+export const onTitleChange = (value)  => {
+    return {
+        type: ON_TITLE_CHANGE,
+        payload: value
+    }
+} 
+
+export const ON_TEXT_CHANGE = "ON_TEXT_CHANGE";
+export const onTextChange = (value)  => {
+    return {
+        type: ON_TEXT_CHANGE,
+        payload: value
+    }
+}

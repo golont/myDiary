@@ -2,12 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Header from "./../header";
 import Routing from "./../routing";
-import Fetching from './fetching';
 
 
 const App = () => {
-    // Fetching()
-    // .then(console.log);
     const state = useSelector(state => state);
     console.log(state);
     return (

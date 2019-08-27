@@ -1,0 +1,101 @@
+.input {
+    transition: .5s;
+    background: none;
+    color: $primary-color;
+    padding: 10px;
+    border: 3px solid $transparent-color;
+    border-bottom: 3px solid $border-color;
+
+    &:focus {
+        border: 3px solid $neutral-menu;
+    }
+    
+    &-login {
+        text-align: center;
+        width: 100%;
+        margin-top: 60px;
+    }
+    
+    &.invalid {
+        box-shadow: inset 0px 0px 15px 5px $danger-color, 0px 0px 15px 5px $border-color;
+        border: 3px solid $danger-color;
+        border-radius: 5px;
+        
+        &::placeholder {
+            color: $secondary-color;
+        }
+    }
+}
+
+.button {
+    text-transform: uppercase;
+    transition: .5s;
+    font-size: rem(30);
+    background: none;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 3px solid $neutral-menu;
+    
+    &:focus,
+    &:hover {
+        border: 3px solid $transparent-color;
+        padding-left: 25px;
+        padding-right: 25px;
+        background: $warning-color;
+        color: $primary-color;
+        box-shadow: -5px 5px 10px rgba(0, 0, 0, .2);
+    }
+
+    &-login {
+        margin-top: 50px;
+        padding: 10px 20px;
+    }
+
+    &-data-page {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+}
+
+.title {
+    color: $primary-color;
+    font-size: rem(56);
+    font-weight: 500;
+
+    &-data-page {
+        margin-left: 50px;
+    }
+}
+
+.textarea {
+    border-radius: 5px;
+    box-shadow: 0 0 40px 5px $border-color;
+    width: 100%;
+    padding: rem(20);
+    line-height: 22px;
+    background: rgba(255, 255, 255, 0.897);
+    color: $mainFontColor;
+}
+
+.timer {
+    font-size: rem(40);
+}
+
+@media screen and (max-width: $tableWidth) {
+    .title {
+        text-align: center;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: $phoneWidth) {
+    .input {
+        &-data-title {
+            width: 100%;
+        }
+    }
+}

@@ -10,14 +10,14 @@ const Login = ({ onSubmit, isValid, name, onChange, focus }) => {
         <section className="login">
             <form className="login__form" onSubmit={onSubmit}>
                 <input
-                    className={isValid ? "" : "invalid"}
+                    className={isValid ? "input input-login" : "input input-login invalid"}
                     type="text"
                     placeholder="username"
                     value={name}
                     onChange={onChange}
                     ref={focus}
                 />
-                <button>Login</button>
+                <button className="button button-login">Login</button>
             </form>
         </section>
     );

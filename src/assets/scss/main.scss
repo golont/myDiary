@@ -133,7 +133,9 @@ section,
 
 // Modules
 // @import "modules/my-module";
+@import "modules/blocks";
 @import "modules/header";
-@import "modules/header-click";
 @import "modules/burger";
 @import "modules/login";
+@import "modules/preloader";
+@import "modules/data-page";

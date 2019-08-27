@@ -1,11 +1,8 @@
-// Font
 $mainFont : "Rubik",
 sans-serif;
 
-// Size
 $mainFontColor : #101010;
 $mainFontSize : 18px;
-// $mainFontWeight : 400;
 $mainFontWeight : 400;
 $mainLineHeight : 1.4;
 
@@ -18,20 +15,10 @@ $smPhoneWidth : 320px;
 
 
 $border-color: rgba(43, 43, 43, 0.815);
-// Main color
-// $default-color : #ffffff;
+$transparent-color: rgba(0, 0, 0, 0);
 $primary-color : #535353;
 $secondary-color: #45161C;
-// $success-color : #26de81;
 $danger-color : #ff2b47;
 $warning-color : #d99d61;
-// $light-color : #999999;
-// $purple-color : #8854d0;
-
-// Neutral Color
-// $neutral-primary : #303133;
-// $neutral-regular : #606266;
-// $neutral-secondary : #909399;
-// $neutral-placeholder : #C0C4CC;
 $neutral-container: rgba(242, 255, 168, 0.459);
 $neutral-menu: #f0b478;
