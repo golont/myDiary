@@ -3,15 +3,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./js/redux/store/store";
-import {BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./js/components/app";
+import UserServiceContext from "./js/utils/user-service-context";
+import UserService from "./js/services/user-service";
 
 const Idx = () => {
     return (
         <Provider store={store}>
-            <Router>
-                <App />
-            </Router>
+            <UserServiceContext.Provider value={new UserService()}>
+                <Router>
+                    <App />
+                </Router>
+            </UserServiceContext.Provider>
         </Provider>
     );
 };

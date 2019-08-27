@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
-import { loginTimeout } from "../../../redux/actions/actions";
+import { login } from "../../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import UserServiceContext from "../../../utils/user-service-context";
 
 const Login = ({ onSubmit, isValid, name, onChange, focus }) => {
     return (
@@ -31,6 +32,7 @@ Login.propTypes = {
 };
 
 const LoginContainer = () => {
+    const us = useContext(UserServiceContext);
     const dispatch = useDispatch();
     const isLogged = useSelector(state => state.user.isLoggedIn);
     const [username, setUsername] = useState("");
@@ -51,7 +53,7 @@ const LoginContainer = () => {
         event.preventDefault();
 
         if (validateUsername(username)) {
-            loginTimeout(username)(1000)(dispatch);
+            login(username, us)(dispatch);
             return;
         }
         setIsValidUsername(false);

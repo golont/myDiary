@@ -17,9 +17,37 @@ const updateUser = ({ user }, { type, payload }) => {
     }
 };
 
+const updateData = ({ data }, { type, payload }) => {
+    switch (type) {
+        case Actions.AUTHENTICATE_USER_REQUEST:
+            return {
+                ...data,
+                loading: true,
+                error: false
+            };
+        case Actions.AUTHENTICATE_USER_SUCCESS:
+            return {
+                ...data,
+                loading: false,
+                error: false,
+                lastPost: payload[payload.length - 1],
+                previousPosts: payload.slice(0, -1)
+            };
+        case Actions.AUTHENTICATE_USER_FAILURE:
+            return {
+                ...data,
+                loading: false,
+                error: true
+            };
+        default:
+            return data;
+    }
+};
+
 const reducer = (state, action) => {
     return {
-        user: updateUser(state, action)
+        user: updateUser(state, action),
+        data: updateData(state, action)
     };
 };
 
