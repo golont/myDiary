@@ -4,6 +4,11 @@ export default class UserService {
     __apibase =
         "https://cors-anywhere.herokuapp.com/https://calm-coast-96117.herokuapp.com/";
 
+    getRemainTime = async () => {
+        const body = await axios.get(`${this.__apibase}time/`);
+        return body.data;
+    };
+
     getUser = async username => {
         const body = await axios.get(`${this.__apibase}get-user/${username}`);
         return body.data;

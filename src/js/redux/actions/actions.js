@@ -29,14 +29,26 @@ export const authenticateUserFailure = error => {
     };
 };
 
+export const SET_TIMER_COUNT = "SET_TIMER_COUNT";
+export const setTimerCount = time => {
+    return {
+        type: SET_TIMER_COUNT,
+        payload: time
+    };
+};
+
 export const login = (username, userService) => dispatch => {
     dispatch(userLogining(username));
-    const { authenticateUser } = userService;
+    const { authenticateUser, getRemainTime } = userService;
     dispatch(authenticateUserRequest());
     try {
         authenticateUser(username).then(({ posts }) => {
             dispatch(authenticateUserSuccess(posts));
         });
+        getRemainTime().then(data => {
+            dispatch(setTimerCount(data))
+        })
+
     } catch (error) {
         dispatch(authenticateUserFailure(error));
     }

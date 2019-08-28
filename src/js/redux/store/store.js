@@ -12,37 +12,38 @@ import reducer from "./../reducers/reducer";
 //         loading: false,
 //         lastPost: {},
 //         previousPosts: []
+//     },
+//     timer: {
+//         time: ""
 //     }
 // };
 const initialState = {
     user: {
         isLoggedIn: true,
-        name: "suka"
+        name: "lol"
     },
     data: {
         error: false,
         loading: false,
-        total: 3,
         lastPost: {
-            _id: "5d65a1594b640a00041ef7dd",
-            title: "Post #3",
-            text: "",
-            date: "27.08.2019"
+            _id: "5d664651c20444000447ab9b",
+            title: "Post #2",
+            text: "Post #2 what can be better?",
+            date: "28.08.2019"
         },
         previousPosts: [
             {
-                _id: "5d65a1264b640a00041ef7db",
-                title: "Post #1",
-                text: "",
-                date: "25.08.2019"
-            },
-            {
-                _id: "5d65a1414b640a00041ef7dc",
-                title: "Post #2",
-                text: "",
-                date: "26.08.2019"
+                _id: "5d65b3ef6f6efd0004d0dee0",
+                title: "My things everywhere",
+                text: "Note My things",
+                date: "27.08.2019"
             }
-        ]
+        ],
+        total: 2
+    },
+    timer: {
+        time: "12:28:41",
+        date: "2019-08-28"
     }
 };
 

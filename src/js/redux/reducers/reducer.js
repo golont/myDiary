@@ -61,10 +61,24 @@ const updateData = ({ data }, { type, payload }) => {
     }
 };
 
+const updateTimer = ({ timer }, { type, payload }) => {
+    switch (type) {
+        case Actions.SET_TIMER_COUNT:
+            return {
+                ...timer,
+                time: payload.time,
+                date: payload.date
+            };
+        default:
+            return timer;
+    }
+};
+
 const reducer = (state, action) => {
     return {
         user: updateUser(state, action),
-        data: updateData(state, action)
+        data: updateData(state, action),
+        timer: updateTimer(state, action)
     };
 };
 
