@@ -63,7 +63,7 @@
 
 .title {
     color: $primary-color;
-    font-size: rem(56);
+    font-size: rem(48);
     font-weight: 500;
 
     &-data-page {
@@ -79,6 +79,10 @@
     line-height: 22px;
     background: rgba(255, 255, 255, 0.897);
     color: $mainFontColor;
+    
+    &-note {
+        box-shadow: 0 0 20px 5px $border-color;
+    }
 }
 
 .timer {

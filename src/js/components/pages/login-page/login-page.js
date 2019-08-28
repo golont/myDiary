@@ -51,7 +51,6 @@ const LoginContainer = () => {
     const usernameInput = React.createRef();
     const onSubmitHandler = event => {
         event.preventDefault();
-
         if (validateUsername(username)) {
             login(username, us)(dispatch);
             return;

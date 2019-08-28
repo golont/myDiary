@@ -26,6 +26,35 @@
         align-items: center;
     }
 
+    &__wrapper-previous-notes {
+        margin-top: rem(200);
+    }
+
+    &__note {
+        margin-top: rem(50);
+
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: rem(32);
+            align-items: center
+        }
+
+        &-title {
+            font-weight: 500;
+        }
+
+        &-wrapper {
+            margin-top: rem(20);
+            display: flex;
+            justify-content: center;
+        }
+
+        &-text {
+            width: 95%;
+        }
+    }
+
 }
 
 @media screen and (max-width: $phoneWidth) {
@@ -52,6 +81,16 @@
             .timer {
                 margin-top: 10px;
                 order: 1;
+                text-align: center;
+            }
+        }
+
+        &__note {
+            &-header {
+                flex-direction: column;
+            }
+
+            &-title {
                 text-align: center;
             }
         }

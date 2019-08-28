@@ -77,3 +77,19 @@ export const onTextChange = (value)  => {
         payload: value
     }
 }
+
+export const SET_POSTS_PER_PAGE = "SET_POSTS_PER_PAGE";
+export const setPostsPerPage = (payload) => {
+    return {
+        type: SET_POSTS_PER_PAGE,
+        payload 
+    }
+}
+
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const setCurrentPage = (payload) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload
+    }
+} 

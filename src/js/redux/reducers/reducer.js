@@ -56,6 +56,22 @@ const updateData = ({ data }, { type, payload }) => {
                     text: payload
                 }
             };
+        case Actions.SET_CURRENT_PAGE:
+            return {
+                ...data,
+                pagination: {
+                    ...data.pagination,
+                    currentPage: payload
+                }
+            };
+        case Actions.SET_POSTS_PER_PAGE:
+            return {
+                ...data,
+                pagination: {
+                    ...data.pagination,
+                    postsPerPage: payload
+                }
+            };
         default:
             return data;
     }
