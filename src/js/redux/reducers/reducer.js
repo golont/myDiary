@@ -31,7 +31,7 @@ const updateData = ({ data }, { type, payload }) => {
                 loading: false,
                 error: false,
                 lastPost: payload[payload.length - 1],
-                previousPosts: payload.slice(0, -1),
+                previousPosts: payload.slice(0, -1).reverse(),
                 total: payload.length
             };
         case Actions.AUTHENTICATE_USER_FAILURE:

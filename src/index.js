@@ -7,6 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./js/components/app";
 import UserServiceContext from "./js/utils/user-service-context";
 import UserService from "./js/services/user-service";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+ 
+AOS.init();
 
 const Idx = () => {
     return (

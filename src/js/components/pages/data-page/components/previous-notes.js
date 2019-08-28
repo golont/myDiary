@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 const Note = ({ post: { title, date, text } }) => {
     return (
-        <div className="data-page__note">
+        <div className="data-page__note" data-aos="zoom-in-up" data-aos-duration="1500">
             <div className="data-page__note-header">
                 <div className="data-page__note-title">{title}</div>
                 <div className="data-page__note-date">{date}</div>
@@ -64,20 +64,19 @@ const PreviousNotes = ({
     return (
         <div className="data-page__wrapper data-page__wrapper-previous-notes">
             <h2 className="title title-data-page">Previous notes</h2>
-            <Pagination
-                handlePageChange={handlePageChange}
-                totalItems={posts.length}
-                itemsPerPage={postsPerPage}
-            />
             <Notes
                 currentPage={currentPage}
                 posts={posts}
                 postsPerPage={postsPerPage}
             />
+            <Pagination
+                handlePageChange={handlePageChange}
+                totalItems={posts.length}
+                itemsPerPage={postsPerPage}
+            />
         </div>
     );
 };
-
 
 PreviousNotes.propTypes = {
     handlePageChange: PropTypes.func,

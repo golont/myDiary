@@ -1,0 +1,18 @@
+.pagination {
+    margin-top: rem(40);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    &__number {
+        transition: .5s all;
+        padding: 5px;
+        margin: 1px;
+        border-radius: 1px;
+        border: 2px solid $border-color;
+        cursor: pointer;
+        &:hover {
+            background: rgba(167, 62, 97, 0.575); 
+            color: rgb(0, 0, 0);
+        }
+    }
+}
