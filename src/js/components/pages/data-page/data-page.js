@@ -4,53 +4,49 @@ import React, { useContext } from "react";
 import PreLoader from "../../preloader/preloader";
 import { onTitleChange, onTextChange } from "../../../redux/actions/actions";
 import UserServiceContext from "../../../utils/user-service-context";
-import Timer from "../../timer";
+import DataPageHeader from "./components/data-page-header";
+import PropTypes from "prop-types";
+import DataPageTextarea from "./components/data-page-textarea";
+import DataPageSubmit from "./components/data-page-submit";
 
 const DataPage = ({
     title,
     text,
     total,
     date,
-    onTitleChangeHandler,
-    onTextChangeHandler,
-    onPostUpdateHandler,
+    onTitleChange,
+    onTextChange,
+    onPostUpdate,
     textAreaRef
 }) => {
     return (
         <div className="data-page__wrapper">
             <h2 className="title title-data-page">Today's note</h2>
-            <div className="data-page__header">
-                <div className="data-page__header-title">
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={onTitleChangeHandler}
-                        className="input input-data-title"
-                        placeholder={`Post #${total}`}
-                    />
-                </div>
-                <div className="data-page__header-date">{date}</div>
-            </div>
-            <div className="data-page__text">
-                <textarea
-                    ref={textAreaRef}
-                    className="textarea"
-                    placeholder="Note your thoughts"
-                    value={text}
-                    onChange={onTextChangeHandler}
-                ></textarea>
-            </div>
-            <div className="data-page__submit">
-                <Timer />
-                <button
-                    className="button button-data-page"
-                    onClick={onPostUpdateHandler}
-                >
-                    Save post
-                </button>
-            </div>
+            <DataPageHeader
+                title={title}
+                total={total}
+                onTitleChange={onTitleChange}
+                date={date}
+            />
+            <DataPageTextarea
+                text={text}
+                onTextChange={onTextChange}
+                textAreaRef={textAreaRef}
+            />
+            <DataPageSubmit onPostUpdate={onPostUpdate} />
         </div>
     );
+};
+
+DataPage.propTypes = {
+    title: PropTypes.string,
+    text: PropTypes.string,
+    date: PropTypes.string,
+    total: PropTypes.number,
+    onTitleChange: PropTypes.func,
+    onTextChange: PropTypes.func,
+    onPostUpdate: PropTypes.func,
+    textAreaRef: PropTypes.func
 };
 
 const DataPageContainer = () => {
@@ -102,9 +98,9 @@ const DataPageContainer = () => {
                 text={text}
                 total={total}
                 date={date}
-                onPostUpdateHandler={onPostUpdateHandler}
-                onTextChangeHandler={onTextChangeHandler}
-                onTitleChangeHandler={onTitleChangeHandler}
+                onPostUpdate={onPostUpdateHandler}
+                onTextChange={onTextChangeHandler}
+                onTitleChange={onTitleChangeHandler}
             />
         </section>
     );
