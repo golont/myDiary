@@ -3,16 +3,48 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    &__number {
-        transition: .5s all;
-        padding: 5px;
-        margin: 1px;
-        border-radius: 1px;
-        border: 2px solid $border-color;
-        cursor: pointer;
-        &:hover {
-            background: rgba(167, 62, 97, 0.575); 
+
+    li {
+        height: 28px;
+
+        a {
+            transition: .5s all;
+            padding: 3px;
+            display: block;
+            cursor: pointer;
+            margin: 1px;
+
+            &:first-child,
+            &:last-child {
+                height: 100%;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            background: rgba(111, 209, 255, 0.575);
             color: rgb(0, 0, 0);
         }
+
+        &.active {
+            text-decoration: underline;
+            color: rgb(0, 0, 0);
+        }
+    }
+
+    .previous,
+    .next {
+        color: rgb(0, 0, 0);
+        font-family: 'icomoon' !important;
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }

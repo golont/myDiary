@@ -3,10 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../../../pagination/pagination";
 import { setCurrentPage } from "./../../../../redux/actions/actions";
 import PropTypes from "prop-types";
+import ReactPaginate from "react-paginate";
 
 const Note = ({ post: { title, date, text } }) => {
     return (
-        <div className="data-page__note" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div
+            className="data-page__note"
+            data-aos="zoom-in-up"
+            data-aos-duration="1500"
+        >
             <div className="data-page__note-header">
                 <div className="data-page__note-title">{title}</div>
                 <div className="data-page__note-date">{date}</div>
@@ -56,6 +61,7 @@ Notes.propTypes = {
 };
 
 const PreviousNotes = ({
+    pageCount,
     handlePageChange,
     posts,
     postsPerPage,
@@ -63,17 +69,36 @@ const PreviousNotes = ({
 }) => {
     return (
         <div className="data-page__wrapper data-page__wrapper-previous-notes">
-            <h2 className="title title-data-page">Previous notes</h2>
+            <div className="data-page__wrapper-title">
+                <h2 className="title title-data-page">Previous notes</h2>
+                <div
+                    className="icon-arrow-down data-page__arrow"
+                    data-aos="fade-down"
+                    data-aos-duration="1000"
+                ></div>
+            </div>
             <Notes
                 currentPage={currentPage}
                 posts={posts}
                 postsPerPage={postsPerPage}
             />
-            <Pagination
-                handlePageChange={handlePageChange}
-                totalItems={posts.length}
-                itemsPerPage={postsPerPage}
-            />
+            {pageCount > 1 ? (
+                <ReactPaginate
+                    previousLabel={""}
+                    nextLabel={""}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePageChange}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pagination__number"}
+                    activeClassName={"active"}
+                />
+            ) : (
+                ""
+            )}
         </div>
     );
 };
@@ -82,6 +107,7 @@ PreviousNotes.propTypes = {
     handlePageChange: PropTypes.func,
     currentPage: PropTypes.number,
     postsPerPage: PropTypes.number,
+    PageCount: PropTypes.number,
     posts: PropTypes.arrayOf(
         PropTypes.shape({
             _id: PropTypes.string,
@@ -99,12 +125,15 @@ const PreviousNotesContainer = () => {
         previousPosts
     } = useSelector(state => state.data);
 
-    const handlePageChange = pageNumber => {
-        dispatch(setCurrentPage(pageNumber));
+    const handlePageChange = ({ selected }) => {
+        dispatch(setCurrentPage(selected + 1));
     };
+
+    const PageCount = Math.ceil(previousPosts.length / postsPerPage);
 
     return (
         <PreviousNotes
+            pageCount={PageCount}
             posts={previousPosts}
             handlePageChange={handlePageChange}
             postsPerPage={postsPerPage}
