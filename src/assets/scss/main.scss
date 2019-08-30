@@ -69,16 +69,17 @@ section,
     position: relative;
     padding: 40px rem(20);
     color: $primary-color;
+
     @media screen and (max-width: $desktopWidth) {
         padding-top: 36px;
         padding-bottom: 36px;
     }
-    
+
     @media screen and (max-width: $desktopWidth) {
         padding-top: 28px;
         padding-bottom: 28px;
     }
-    
+
     @media screen and (max-width: $desktopWidth) {
         padding-top: 20px;
         padding-bottom: 20px;

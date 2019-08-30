@@ -1,5 +1,6 @@
 import * as Actions from "./../actions/actions";
-import moment from "moment";
+import updateData from "./update-data";
+import updateSearch from "./update-search";
 
 const updateUser = ({ user }, { type, payload }) => {
     switch (type) {
@@ -18,66 +19,6 @@ const updateUser = ({ user }, { type, payload }) => {
     }
 };
 
-const updateData = ({ data }, { type, payload }) => {
-    switch (type) {
-        case Actions.AUTHENTICATE_USER_REQUEST:
-            return {
-                ...data,
-                loading: true,
-                error: false
-            };
-        case Actions.AUTHENTICATE_USER_SUCCESS:
-            return {
-                ...data,
-                loading: false,
-                error: false,
-                lastPost: payload[payload.length - 1],
-                previousPosts: payload.slice(0, -1).reverse(),
-                total: payload.length
-            };
-        case Actions.AUTHENTICATE_USER_FAILURE:
-            return {
-                ...data,
-                loading: false,
-                error: true
-            };
-        case Actions.ON_TITLE_CHANGE:
-            return {
-                ...data,
-                lastPost: {
-                    ...data.lastPost,
-                    title: payload
-                }
-            };
-        case Actions.ON_TEXT_CHANGE:
-            return {
-                ...data,
-                lastPost: {
-                    ...data.lastPost,
-                    text: payload
-                }
-            };
-        case Actions.SET_CURRENT_PAGE:
-            return {
-                ...data,
-                pagination: {
-                    ...data.pagination,
-                    currentPage: payload
-                }
-            };
-        case Actions.SET_POSTS_PER_PAGE:
-            return {
-                ...data,
-                pagination: {
-                    ...data.pagination,
-                    postsPerPage: payload
-                }
-            };
-        default:
-            return data;
-    }
-};
-
 const updateTimer = ({ timer }, { type, payload }) => {
     switch (type) {
         case Actions.SET_TIMER_COUNT:
@@ -88,70 +29,6 @@ const updateTimer = ({ timer }, { type, payload }) => {
             };
         default:
             return timer;
-    }
-};
-
-const updateSearch = (state, { type, payload }) => {
-    switch (type) {
-        case Actions.INITIALIZE_SEARCH:
-            if (state.data.previousPosts.length > 0) {
-                const maxDate = moment(
-                    state.data.previousPosts[0].date,
-                    "DD.MM.YYYY"
-                ).format("YYYY-MM-DD");
-                const minDate = moment(
-                    state.data.previousPosts[
-                        state.data.previousPosts.length - 1
-                    ].date,
-                    "DD.MM.YYYY"
-                ).format("YYYY-MM-DD");
-                return {
-                    ...state.search,
-                    posts: [],
-                    fromDate: minDate,
-                    toDate: maxDate,
-                    maxDate,
-                    minDate
-                };
-            }
-        case Actions.SEARCH_POSTS:
-            return {
-                ...state.search,
-                posts: state.data.previousPosts.filter(element => {
-                    const before = moment(payload.maxDate, "YYYY-MM-DD");
-                    const after = moment(payload.minDate, "YYYY-MM-DD");
-                    const elem = moment(element.date, "DD-MM-YYYY");
-                    return elem <= before && elem >= after;
-                })
-            };
-        case Actions.SET_SEARCH_CURRENT_PAGE:
-            return {
-                ...state.search,
-                pagination: {
-                    ...state.search.pagination,
-                    currentPage: payload
-                }
-            };
-        case Actions.SET_SEARCH_POSTS_PER_PAGE:
-            return {
-                ...state.search,
-                pagination: {
-                    ...state.search.pagination,
-                    postsPerPage: payload
-                }
-            };
-        case Actions.SET_FROM_DATE:
-            return {
-                ...state.search,
-                fromDate: payload
-            };
-        case Actions.SET_TO_DATE:
-            return {
-                ...state.search,
-                toDate: payload
-            };
-        default:
-            return state.search;
     }
 };
 

@@ -1,3 +1,3 @@
-import PreLoader from './preloader'
+import PreLoader from "./preloader";
 
 export default PreLoader;

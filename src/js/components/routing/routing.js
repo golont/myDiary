@@ -1,6 +1,13 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { DataPage, SearchPage, Login, Logout, NotFoundPage, AboutPage } from "./../pages";
+import {
+    DataPage,
+    SearchPage,
+    Login,
+    Logout,
+    NotFoundPage,
+    AboutPage
+} from "./../pages";
 
 const Routing = () => {
     return (

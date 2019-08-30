@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Timer from "../../../timer";
 
-const DataPageSubmit = ({onPostUpdate}) => {
+const DataPageSubmit = ({ onPostUpdate }) => {
     return (
         <div className="data-page__submit">
             <Timer />

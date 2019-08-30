@@ -1,16 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "./../../../../redux/actions/actions";
 import PropTypes from "prop-types";
-import ReactPaginate from "react-paginate";
+import NotesPagination from "../../../pagination/notes-pagination";
 
-import Notes from "../../../notes";
-
-const PreviousNotes = ({
-    pageCount,
-    handlePageChange,
-    posts
-}) => {
+const PreviousNotes = ({ pageCount, handlePageChange, posts }) => {
     if (posts.length < 1)
         return (
             <h2 className="title title-data-page data-page__wrapper-previous-notes">
@@ -29,26 +23,11 @@ const PreviousNotes = ({
                     data-aos-duration="1000"
                 ></div>
             </div>
-            <Notes
+            <NotesPagination
+                pageCount={pageCount}
                 posts={posts}
+                handlePageChange={handlePageChange}
             />
-            {pageCount > 1 ? (
-                <ReactPaginate
-                    previousLabel={""}
-                    nextLabel={""}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={3}
-                    onPageChange={handlePageChange}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pagination__number"}
-                    activeClassName={"active"}
-                />
-            ) : (
-                ""
-            )}
         </div>
     );
 };

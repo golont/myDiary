@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const Notes = ({ posts }) => {
-
     return (
         <div className="data-page__wrapper">
             {posts.map(post => (

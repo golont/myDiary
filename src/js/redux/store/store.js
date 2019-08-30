@@ -31,7 +31,7 @@ const initialState = {
         time: ""
     }
 };
-// const initialState =
+
 const store = createStore(reducer, initialState, applyMiddleware(thunk));
 
 export default store;

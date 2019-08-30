@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const HamburgerMenu = ({toggleActiveHandler}) => {
+const HamburgerMenu = ({ toggleActiveHandler }) => {
     return (
         <div className="header__hamburger">
             <input
@@ -20,7 +20,6 @@ const HamburgerMenu = ({toggleActiveHandler}) => {
         </div>
     );
 };
-
 
 HamburgerMenu.propTypes = {
     toggleActiveHandler: PropTypes.func.isRequired

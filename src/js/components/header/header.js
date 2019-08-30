@@ -9,13 +9,13 @@ const Header = () => {
     const [isActive, toggleActive] = useState(false);
     const toggleActiveHandler = () => {
         isActive ? toggleActive(false) : toggleActive(true);
-    }
+    };
 
     return (
         <header className="header">
-            <Logo/>
-            <Navigation isActive={isActive} isLogged={isLogged}/>
-            <HamburgerMenu toggleActiveHandler={toggleActiveHandler}/>
+            <Logo />
+            <Navigation isActive={isActive} isLogged={isLogged} />
+            <HamburgerMenu toggleActiveHandler={toggleActiveHandler} />
         </header>
     );
 };
