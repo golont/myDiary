@@ -9,9 +9,7 @@ import Notes from "../../../notes";
 const PreviousNotes = ({
     pageCount,
     handlePageChange,
-    posts,
-    postsPerPage,
-    currentPage
+    posts
 }) => {
     if (posts.length < 1)
         return (
@@ -32,9 +30,7 @@ const PreviousNotes = ({
                 ></div>
             </div>
             <Notes
-                currentPage={currentPage}
                 posts={posts}
-                postsPerPage={postsPerPage}
             />
             {pageCount > 1 ? (
                 <ReactPaginate
@@ -59,8 +55,6 @@ const PreviousNotes = ({
 
 PreviousNotes.propTypes = {
     handlePageChange: PropTypes.func,
-    currentPage: PropTypes.number,
-    postsPerPage: PropTypes.number,
     PageCount: PropTypes.number,
     posts: PropTypes.arrayOf(
         PropTypes.shape({
@@ -84,14 +78,15 @@ const PreviousNotesContainer = () => {
     };
 
     const PageCount = Math.ceil(previousPosts.length / postsPerPage);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPage = indexOfLastPost - postsPerPage;
+    const currentPosts = previousPosts.slice(indexOfFirstPage, indexOfLastPost);
 
     return (
         <PreviousNotes
             pageCount={PageCount}
-            posts={previousPosts}
+            posts={currentPosts}
             handlePageChange={handlePageChange}
-            postsPerPage={postsPerPage}
-            currentPage={currentPage}
         />
     );
 };

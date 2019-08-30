@@ -37,10 +37,10 @@ export const setTimerCount = time => {
     };
 };
 
-export const SET_MIN_MAX_DATES = "SET_MIN_MAX_DATES";
-export const setMinMaxDates = () => {
+export const INITIALIZE_SEARCH = "INITIALIZE_SEARCH";
+export const initializeSearch = () => {
     return {
-        type: SET_MIN_MAX_DATES
+        type: INITIALIZE_SEARCH
     };
 };
 
@@ -54,7 +54,7 @@ export const login = (username, userService) => dispatch => {
                 dispatch(authenticateUserSuccess(posts));
             })
             .then(() => {
-                dispatch(setMinMaxDates());
+                dispatch(initializeSearch());
             });
         getRemainTime().then(data => {
             dispatch(setTimerCount(data));
@@ -103,6 +103,22 @@ export const setCurrentPage = payload => {
     };
 };
 
+export const SET_SEARCH_POSTS_PER_PAGE = "SET_SEARCH_POSTS_PER_PAGE";
+export const setSearchPostsPerPage = payload => {
+    return {
+        type: SET_SEARCH_POSTS_PER_PAGE,
+        payload
+    };
+};
+
+export const SET_SEARCH_CURRENT_PAGE = "SET_SEARCH_CURRENT_PAGE";
+export const setSearchCurrentPage = payload => {
+    return {
+        type: SET_SEARCH_CURRENT_PAGE,
+        payload
+    };
+};
+
 export const SEARCH_POSTS = "SEARCH_POSTS";
 export const searchPosts = (minDate, maxDate) => {
     return {
@@ -111,5 +127,21 @@ export const searchPosts = (minDate, maxDate) => {
             minDate,
             maxDate
         }
+    };
+};
+
+export const SET_FROM_DATE = "SET_FROM_DATE";
+export const setFromDate = payload => {
+    return {
+        type: SET_FROM_DATE,
+        payload
+    };
+};
+
+export const SET_TO_DATE = "SET_TO_DATE";
+export const setToDate = payload => {
+    return {
+        type: SET_TO_DATE,
+        payload
     };
 };

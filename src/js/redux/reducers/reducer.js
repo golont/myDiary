@@ -93,21 +93,27 @@ const updateTimer = ({ timer }, { type, payload }) => {
 
 const updateSearch = (state, { type, payload }) => {
     switch (type) {
-        case Actions.SET_MIN_MAX_DATES:
-            if (state.data.previousPosts.length > 0)
+        case Actions.INITIALIZE_SEARCH:
+            if (state.data.previousPosts.length > 0) {
+                const maxDate = moment(
+                    state.data.previousPosts[0].date,
+                    "DD.MM.YYYY"
+                ).format("YYYY-MM-DD");
+                const minDate = moment(
+                    state.data.previousPosts[
+                        state.data.previousPosts.length - 1
+                    ].date,
+                    "DD.MM.YYYY"
+                ).format("YYYY-MM-DD");
                 return {
                     ...state.search,
-                    maxDate: moment(
-                        state.data.previousPosts[0].date,
-                        "DD.MM.YYYY"
-                    ).format("YYYY-MM-DD"),
-                    minDate: moment(
-                        state.data.previousPosts[
-                            state.data.previousPosts.length - 1
-                        ].date,
-                        "DD.MM.YYYY"
-                    ).format("YYYY-MM-DD")
+                    posts: [],
+                    fromDate: minDate,
+                    toDate: maxDate,
+                    maxDate,
+                    minDate
                 };
+            }
         case Actions.SEARCH_POSTS:
             return {
                 ...state.search,
@@ -117,6 +123,32 @@ const updateSearch = (state, { type, payload }) => {
                     const elem = moment(element.date, "DD-MM-YYYY");
                     return elem <= before && elem >= after;
                 })
+            };
+        case Actions.SET_SEARCH_CURRENT_PAGE:
+            return {
+                ...state.search,
+                pagination: {
+                    ...state.search.pagination,
+                    currentPage: payload
+                }
+            };
+        case Actions.SET_SEARCH_POSTS_PER_PAGE:
+            return {
+                ...state.search,
+                pagination: {
+                    ...state.search.pagination,
+                    postsPerPage: payload
+                }
+            };
+        case Actions.SET_FROM_DATE:
+            return {
+                ...state.search,
+                fromDate: payload
+            };
+        case Actions.SET_TO_DATE:
+            return {
+                ...state.search,
+                toDate: payload
             };
         default:
             return state.search;

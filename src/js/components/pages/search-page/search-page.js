@@ -1,33 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import _ from "lodash";
-import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
 import Notes from "../../notes";
+import {
+    searchPosts,
+    setFromDate,
+    setSearchCurrentPage
+} from "../../../redux/actions/actions";
+import ReactPaginate from "react-paginate";
 
 const SearchPage = () => {
     const dispatch = useDispatch();
     const isLogged = useSelector(state => state.user.isLoggedIn);
     if (!isLogged) return <Redirect to="/login" />;
 
-    const posts = useSelector(state => state.data.previousPosts.length < 1);
+    const {
+        posts,
+        pagination: { currentPage, postsPerPage },
+        fromDate,
+        toDate
+    } = useSelector(state => state.search);
+    const hasPosts = useSelector(state => state.data.previousPosts.length < 1);
     const { minDate, maxDate } = useSelector(state => state.search);
-    const [dateFrom, setDateFrom] = useState(minDate);
-    const [dateTo, setDateTo] = useState(maxDate);
 
     const onDateFromChangeHandler = event => {
-        setDateFrom(event.target.value);
+        dispatch(setFromDate(event.target.value));
     };
-
     const onDateToChangeHandler = event => {
-        setDateTo(event.target.value);
+        dispatch(setToDate(event.target.value));
     };
 
     const onSubmitHandler = event => {
         event.preventDefault();
+        dispatch(searchPosts(fromDate, toDate));
     };
 
-    if (posts)
+    const handlePageChange = ({ selected }) => {
+        dispatch(setSearchCurrentPage(selected + 1));
+    };
+
+    const pageCount = Math.ceil(posts.length / postsPerPage);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPage = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPage, indexOfLastPost);
+
+    if (hasPosts)
         return (
             <h2 className="title title-data-page">No previous notes yet.</h2>
         );
@@ -44,9 +61,9 @@ const SearchPage = () => {
                                 className="input input-date"
                                 type="date"
                                 min={minDate}
-                                max={dateTo}
+                                max={toDate}
                                 onChange={onDateFromChangeHandler}
-                                value={dateFrom}
+                                value={fromDate}
                             />
                         </div>
                         <div className="search-page__form-to">
@@ -54,10 +71,10 @@ const SearchPage = () => {
                             <input
                                 className="input input-date"
                                 type="date"
-                                min={dateFrom}
+                                min={fromDate}
                                 max={maxDate}
                                 onChange={onDateToChangeHandler}
-                                value={dateTo}
+                                value={toDate}
                             />
                         </div>
                     </div>
@@ -66,8 +83,24 @@ const SearchPage = () => {
                     </button>
                 </form>
             </div>
-            <Notes
-            />
+            <Notes posts={currentPosts} />
+            {pageCount > 1 ? (
+                <ReactPaginate
+                    previousLabel={""}
+                    nextLabel={""}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePageChange}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pagination__number"}
+                    activeClassName={"active"}
+                />
+            ) : (
+                ""
+            )}
         </section>
     );
 };
