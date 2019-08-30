@@ -9,20 +9,30 @@
     &:focus {
         border: 3px solid $neutral-menu;
     }
-    
+
     &-login {
         text-align: center;
         width: 100%;
         margin-top: 60px;
     }
-    
+
     &.invalid {
         box-shadow: inset 0px 0px 15px 5px $danger-color, 0px 0px 15px 5px $border-color;
         border: 3px solid $danger-color;
         border-radius: 5px;
-        
+
         &::placeholder {
             color: $secondary-color;
+        }
+    }
+
+    &-date {
+        background: none;
+        margin: 5px;
+        padding: 5px;
+
+        &::-webkit-calendar-picker-indicator {
+            background: none;
         }
     }
 }
@@ -36,7 +46,7 @@
     font-weight: 700;
     border-radius: 10px;
     border: 3px solid $neutral-menu;
-    
+
     &:focus,
     &:hover {
         border: 3px solid $transparent-color;
@@ -59,6 +69,10 @@
         padding-right: 25px;
     }
 
+    &-search-page {
+        margin-top: rem(30);
+    }
+
 }
 
 .title {
@@ -68,6 +82,10 @@
 
     &-data-page {
         margin-left: 50px;
+    }
+
+    &-subtitle {
+        font-size: rem(38);
     }
 }
 
@@ -79,7 +97,7 @@
     line-height: 22px;
     background: rgba(255, 255, 255, 0.897);
     color: $mainFontColor;
-    
+
     &-note {
         box-shadow: 0 0 20px 5px $border-color;
     }

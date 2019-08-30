@@ -67,18 +67,21 @@ li {
 section,
 .section {
     position: relative;
-    padding: 40px 0;
-
+    padding: 40px rem(20);
+    color: $primary-color;
     @media screen and (max-width: $desktopWidth) {
-        padding: 36px 0;
+        padding-top: 36px;
+        padding-bottom: 36px;
     }
-
+    
     @media screen and (max-width: $desktopWidth) {
-        padding: 28px 0;
+        padding-top: 28px;
+        padding-bottom: 28px;
     }
-
+    
     @media screen and (max-width: $desktopWidth) {
-        padding: 20px 0;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 
@@ -140,3 +143,4 @@ section,
 @import "modules/preloader";
 @import "modules/pagination";
 @import "modules/data-page";
+@import "modules/search-page";

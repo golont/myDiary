@@ -1,4 +1,5 @@
 import * as Actions from "./../actions/actions";
+import moment from "moment";
 
 const updateUser = ({ user }, { type, payload }) => {
     switch (type) {
@@ -90,10 +91,43 @@ const updateTimer = ({ timer }, { type, payload }) => {
     }
 };
 
+const updateSearch = (state, { type, payload }) => {
+    switch (type) {
+        case Actions.SET_MIN_MAX_DATES:
+            if (state.data.previousPosts.length > 0)
+                return {
+                    ...state.search,
+                    maxDate: moment(
+                        state.data.previousPosts[0].date,
+                        "DD.MM.YYYY"
+                    ).format("YYYY-MM-DD"),
+                    minDate: moment(
+                        state.data.previousPosts[
+                            state.data.previousPosts.length - 1
+                        ].date,
+                        "DD.MM.YYYY"
+                    ).format("YYYY-MM-DD")
+                };
+        case Actions.SEARCH_POSTS:
+            return {
+                ...state.search,
+                posts: state.data.previousPosts.filter(element => {
+                    const before = moment(payload.maxDate, "YYYY-MM-DD");
+                    const after = moment(payload.minDate, "YYYY-MM-DD");
+                    const elem = moment(element.date, "DD-MM-YYYY");
+                    return elem <= before && elem >= after;
+                })
+            };
+        default:
+            return state.search;
+    }
+};
+
 const reducer = (state, action) => {
     return {
         user: updateUser(state, action),
         data: updateData(state, action),
+        search: updateSearch(state, action),
         timer: updateTimer(state, action)
     };
 };

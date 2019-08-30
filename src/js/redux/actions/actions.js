@@ -37,18 +37,28 @@ export const setTimerCount = time => {
     };
 };
 
+export const SET_MIN_MAX_DATES = "SET_MIN_MAX_DATES";
+export const setMinMaxDates = () => {
+    return {
+        type: SET_MIN_MAX_DATES
+    };
+};
+
 export const login = (username, userService) => dispatch => {
     dispatch(userLogining(username));
     const { authenticateUser, getRemainTime } = userService;
     dispatch(authenticateUserRequest());
     try {
-        authenticateUser(username).then(({ posts }) => {
-            dispatch(authenticateUserSuccess(posts));
-        });
+        authenticateUser(username)
+            .then(({ posts }) => {
+                dispatch(authenticateUserSuccess(posts));
+            })
+            .then(() => {
+                dispatch(setMinMaxDates());
+            });
         getRemainTime().then(data => {
-            dispatch(setTimerCount(data))
-        })
-
+            dispatch(setTimerCount(data));
+        });
     } catch (error) {
         dispatch(authenticateUserFailure(error));
     }
@@ -61,35 +71,45 @@ export const userLoginingOut = () => {
     };
 };
 
-
 export const ON_TITLE_CHANGE = "ON_TITLE_CHANGE";
-export const onTitleChange = (value)  => {
+export const onTitleChange = value => {
     return {
         type: ON_TITLE_CHANGE,
         payload: value
-    }
-} 
+    };
+};
 
 export const ON_TEXT_CHANGE = "ON_TEXT_CHANGE";
-export const onTextChange = (value)  => {
+export const onTextChange = value => {
     return {
         type: ON_TEXT_CHANGE,
         payload: value
-    }
-}
+    };
+};
 
 export const SET_POSTS_PER_PAGE = "SET_POSTS_PER_PAGE";
-export const setPostsPerPage = (payload) => {
+export const setPostsPerPage = payload => {
     return {
         type: SET_POSTS_PER_PAGE,
-        payload 
-    }
-}
+        payload
+    };
+};
 
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-export const setCurrentPage = (payload) => {
+export const setCurrentPage = payload => {
     return {
         type: SET_CURRENT_PAGE,
         payload
-    }
-} 
+    };
+};
+
+export const SEARCH_POSTS = "SEARCH_POSTS";
+export const searchPosts = (minDate, maxDate) => {
+    return {
+        type: SEARCH_POSTS,
+        payload: {
+            minDate,
+            maxDate
+        }
+    };
+};
