@@ -15,7 +15,11 @@ const updateData = ({ data }, { type, payload }) => {
                 error: false,
                 lastPost: payload[payload.length - 1],
                 previousPosts: payload.slice(0, -1).reverse(),
-                total: payload.length
+                total: payload.length,
+                pagination: {
+                    currentPage: 1,
+                    postsPerPage: 10
+                }
             };
         case Actions.AUTHENTICATE_USER_FAILURE:
             return {
