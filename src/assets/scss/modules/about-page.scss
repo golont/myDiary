@@ -1,0 +1,22 @@
+.about-page {
+    &__text {
+        padding: rem(20);
+        p {
+            padding: 5px;
+        }
+        a {
+            text-transform: uppercase;
+            color: $mainFontColor;
+            text-decoration: underline;
+        }
+    }
+}
+
+
+@media screen and (max-width: $tableWidth) {
+    .about-page {
+        &__text {
+            text-align: justify;
+        }
+    }
+}
