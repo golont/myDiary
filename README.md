@@ -13,6 +13,9 @@ https://mydairy-ompwn.mongodbstitch.com/about
 
 `git clone https://github.com/golont/myDairy.git`
 
+install dependencies
+`npm i`
+
 run dev server:
 `npm run dev`
 
