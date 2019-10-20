@@ -16,7 +16,7 @@ const LoginContainer = () => {
     const [isValidUsername, setIsValidUsername] = useState(true);
 
     const onChangeHandler = event => {
-        setUsername(event.target.value);
+        setUsername(event.target.value.trim());
         setIsValidUsername(true);
     };
 
