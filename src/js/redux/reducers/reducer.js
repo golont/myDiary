@@ -4,10 +4,10 @@ import updateSearch from "./update-search";
 
 const updateUser = ({ user }, { type, payload }) => {
     switch (type) {
-        case Actions.USER_LOGINING:
+        case Actions.USER_LOGGEDIN:
             return {
                 isLoggedIn: true,
-                name: payload.trim()
+                name: payload
             };
         case Actions.USER_LOGINING_OUT:
             return {

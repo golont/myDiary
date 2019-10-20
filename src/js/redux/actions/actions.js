@@ -1,7 +1,7 @@
-export const USER_LOGINING = "USER_LOGINING";
-export const userLogining = username => {
+export const USER_LOGGEDIN = "USER_LOGGEDIN";
+export const userLoggedin = username => {
     return {
-        type: USER_LOGINING,
+        type: USER_LOGGEDIN,
         payload: username
     };
 };
@@ -44,21 +44,16 @@ export const initializeSearch = () => {
     };
 };
 
-export const login = (username, userService) => dispatch => {
-    dispatch(userLogining(username));
-    const { authenticateUser, getRemainTime } = userService;
+export const login = (username, userService) => async dispatch => {
     dispatch(authenticateUserRequest());
     try {
-        authenticateUser(username)
-            .then(({ posts }) => {
-                dispatch(authenticateUserSuccess(posts));
-            })
-            .then(() => {
-                dispatch(initializeSearch());
-            });
-        getRemainTime().then(data => {
-            dispatch(setTimerCount(data));
-        });
+        const { authenticateUser, getRemainTime } = userService;
+        const posts = await authenticateUser(username);
+        const time = await getRemainTime();
+        dispatch(setTimerCount(time));
+        dispatch(authenticateUserSuccess(posts));
+        dispatch(initializeSearch());
+        dispatch(userLoggedin(username));
     } catch (error) {
         dispatch(authenticateUserFailure(error));
     }

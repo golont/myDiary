@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import UserServiceContext from "../../../utils/user-service-context";
 import Login from "./login-page";
-import { validateUsername } from './../../../utils/validate-username';
-
+import { validateUsername } from "./../../../utils/validate-username";
+import PreLoader from "../../preloader/preloader";
 
 const LoginContainer = () => {
     const us = useContext(UserServiceContext);
     const dispatch = useDispatch();
     const isLogged = useSelector(state => state.user.isLoggedIn);
+    const { loading, error } = useSelector(state => state.data);
     const [username, setUsername] = useState("");
     const [isValidUsername, setIsValidUsername] = useState(true);
 
@@ -30,7 +31,21 @@ const LoginContainer = () => {
         usernameInput.current.focus();
     };
 
-    if (isLogged) return <Redirect to="/" />;
+    if (loading) {
+        return (
+            <div className="preloader-align">
+                <PreLoader />
+            </div>
+        );
+    }
+    
+    if (error) {
+        return <div className="error">ERROR</div>;
+    }
+
+    if (isLogged) {
+        return <Redirect to="/" />;
+    }
 
     return (
         <Login

@@ -9,52 +9,46 @@ export default class UserService {
         return body.data;
     };
 
-    getUser = async username => {
+    updateLastPost = async (username, post) => {
+        await axios.post(`${this.__apibase}upd-last-post/`, { username, post });
+    };
+
+    _getUser = async username => {
         const body = await axios.get(`${this.__apibase}get-user/${username}`);
         return body.data;
     };
 
-    getUserPosts = async username => {
+    _getUserPosts = async username => {
         const body = await axios.get(
             `${this.__apibase}get-user-posts/${username}`
         );
         return body.data;
     };
 
-    createUser = async username => {
+    _createUser = async username => {
         await axios.post(`${this.__apibase}create-user/`, { username });
     };
 
-    createNewPost = async username => {
+    _createNewPost = async username => {
         await axios.post(`${this.__apibase}create-new-post/`, { username });
     };
 
-    updateLastPost = async (username, post) => {
-        await axios.post(`${this.__apibase}upd-last-post/`, { username, post });
-    };
-
     authenticateUser = async username => {
-        return await this.getUser(username)
-            .then(({ isUserFound }) => {
-                return new Promise((resolve, reject) => {
-                    isUserFound ? resolve() : reject();
-                });
-            })
-            .then(resolve => {
-                return this.getUserPosts(username);
-            })
-            .then(({ posts, currentDate }) => {
-                const lastPostDate = posts[posts.length - 1].date;
-                if (currentDate != lastPostDate) {
-                    return this.createNewPost(username).then(() =>
-                        this.getUserPosts(username)
-                    );
-                } else return { posts };
-            })
-            .catch(() => {
-                return this.createUser(username)
-                    .then(() => this.createNewPost(username))
-                    .then(() => this.getUserPosts(username));
-            });
+        const { isUserFound } = await this._getUser(username);
+        if (isUserFound) {
+            const { posts, currentDate } = await this._getUserPosts(username);
+            const lastPostDate = posts[posts.length - 1].date;
+            if (currentDate !== lastPostDate) {
+                await this._createNewPost(username);
+                const { posts } = await this._getUserPosts(username);
+                return posts;
+            } else {
+                return posts;
+            }
+        } else {
+            await this._createUser(username);
+            await this._createNewPost(username);
+            return await this._getUserPosts(username);
+        }
     };
 }
