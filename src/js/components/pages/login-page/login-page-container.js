@@ -38,10 +38,10 @@ const LoginContainer = () => {
             </div>
         );
     }
-    
-    if (error) {
-        return <div className="error">ERROR</div>;
-    }
+
+    // if (error) {
+    //     return <div className="error">ERROR</div>;
+    // }
 
     if (isLogged) {
         return <Redirect to="/" />;

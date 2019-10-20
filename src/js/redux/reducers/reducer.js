@@ -1,6 +1,7 @@
 import * as Actions from "./../actions/actions";
 import updateData from "./update-data";
 import updateSearch from "./update-search";
+import { initialState } from "../store/init-state";
 
 const updateUser = ({ user }, { type, payload }) => {
     switch (type) {
@@ -8,11 +9,6 @@ const updateUser = ({ user }, { type, payload }) => {
             return {
                 isLoggedIn: true,
                 name: payload
-            };
-        case Actions.USER_LOGINING_OUT:
-            return {
-                isLoggedIn: false,
-                name: null
             };
         default:
             return user;
@@ -33,12 +29,17 @@ const updateTimer = ({ timer }, { type, payload }) => {
 };
 
 const reducer = (state, action) => {
-    return {
-        user: updateUser(state, action),
-        data: updateData(state, action),
-        search: updateSearch(state, action),
-        timer: updateTimer(state, action)
-    };
+    switch (action.type) {
+        case Actions.USER_LOGINING_OUT:
+            return initialState;
+        default:
+            return {
+                user: updateUser(state, action),
+                data: updateData(state, action),
+                search: updateSearch(state, action),
+                timer: updateTimer(state, action)
+            };
+    }
 };
 
 export default reducer;

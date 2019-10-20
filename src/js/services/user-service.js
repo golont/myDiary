@@ -48,7 +48,8 @@ export default class UserService {
         } else {
             await this._createUser(username);
             await this._createNewPost(username);
-            return await this._getUserPosts(username);
+            const { posts } = await this._getUserPosts(username);
+            return posts;
         }
     };
 }
