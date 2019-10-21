@@ -1,6 +1,6 @@
-import Note from "../note";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import Note from "../note";
 
 const Notes = ({ posts }) => {
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import { login } from "../../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { login } from "../../../redux/actions/actions";
 import UserServiceContext from "../../../utils/user-service-context";
 import Login from "./login-page";
 import { validateUsername } from "./../../../utils/validate-username";

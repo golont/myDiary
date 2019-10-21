@@ -1,7 +1,7 @@
 import React from "react";
 import ReactPaginate from "react-paginate";
-import Notes from "../notes";
 import PropTypes from "prop-types";
+import Notes from "../notes";
 
 const NotesPagination = ({ posts, pageCount, handlePageChange }) => {
     return (

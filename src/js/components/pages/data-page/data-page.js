@@ -1,10 +1,10 @@
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import React from "react";
-import TodaysNote from "./components/todays-note";
-import PreviousNotes from "./components/previous-notes";
+import TodaysNote from "./components/todays-note-container";
+import PreviousNotes from "./components/previous-notes-container";
 
-const DataPageContainer = () => {
+const DataPage = () => {
     const isLogged = useSelector(state => state.user.isLoggedIn);
     
     if (!isLogged) return <Redirect to="/login" />;
@@ -17,4 +17,4 @@ const DataPageContainer = () => {
     );
 };
 
-export default DataPageContainer;
+export default DataPage;
