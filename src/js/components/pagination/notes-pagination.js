@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import PropTypes from "prop-types";
 import Notes from "../notes";
 
-const NotesPagination = ({ posts, pageCount, handlePageChange }) => {
+const NotesPagination = ({ posts, pageCount, handlePageChange, initPage }) => {
     return (
         <React.Fragment>
             <Notes posts={posts} />
@@ -20,6 +20,7 @@ const NotesPagination = ({ posts, pageCount, handlePageChange }) => {
                     containerClassName={"pagination"}
                     subContainerClassName={"pagination__number"}
                     activeClassName={"active"}
+                    forcePage={initPage}
                 />
             ) : (
                 ""
@@ -38,6 +39,7 @@ NotesPagination.propTypes = {
         })
     ),
     pageCount: PropTypes.number,
+    initPage: PropTypes.number,
     handlePageChange: PropTypes.func
 };
 

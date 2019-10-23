@@ -40,6 +40,7 @@ const SearchPage = () => {
     const onSubmitHandler = event => {
         event.preventDefault();
         dispatch(searchPosts(fromDate, toDate));
+        dispatch(setSearchCurrentPage(1));
     };
 
     const handlePageChange = ({ selected }) => {
@@ -69,6 +70,7 @@ const SearchPage = () => {
             <h2 className="title title-data-page">Search notes</h2>
             <SearchPageFrom date={date} handlers={handlers} />
             <NotesPagination
+                initPage={currentPage - 1}
                 posts={currentPosts}
                 pageCount={pageCount}
                 handlePageChange={handlePageChange}

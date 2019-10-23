@@ -31,6 +31,7 @@ const PreviousNotesContainer = () => {
             pageCount={PageCount}
             posts={currentPosts}
             handlePageChange={handlePageChange}
+            initPage={currentPage - 1}
         />
     );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import NotesPagination from "../../../pagination/notes-pagination";
 
-const PreviousNotes = ({ pageCount, handlePageChange, posts }) => {
+const PreviousNotes = ({ pageCount, handlePageChange, posts, initPage }) => {
     return (
         <div className="data-page__wrapper data-page__wrapper-previous-notes">
             <div className="data-page__wrapper-title">
@@ -18,6 +18,7 @@ const PreviousNotes = ({ pageCount, handlePageChange, posts }) => {
                 pageCount={pageCount}
                 posts={posts}
                 handlePageChange={handlePageChange}
+                initPage={initPage}
             />
         </div>
     );
@@ -26,6 +27,7 @@ const PreviousNotes = ({ pageCount, handlePageChange, posts }) => {
 PreviousNotes.propTypes = {
     handlePageChange: PropTypes.func,
     PageCount: PropTypes.number,
+    initPage: PropTypes.number,
     posts: PropTypes.arrayOf(
         PropTypes.shape({
             _id: PropTypes.string,

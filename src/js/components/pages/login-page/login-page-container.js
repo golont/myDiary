@@ -24,7 +24,7 @@ const LoginContainer = () => {
     const onSubmitHandler = event => {
         event.preventDefault();
         if (validateUsername(username)) {
-            login(username, us)(dispatch);
+            dispatch(login(username, us));
             return;
         }
         setIsValidUsername(false);
