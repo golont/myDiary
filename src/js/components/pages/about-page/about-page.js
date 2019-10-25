@@ -23,8 +23,8 @@ const AboutPage = () => {
             <div className="about-page__text">
                 Source:
                 <ol className="about-page__source-list">
-                    <li><a href="https://github.com/golont/myDairy" target="_blank" rel="noopener noreferrer">front-end</a></li>
-                    <li><a href="https://github.com/golont/myDairyApi" target="_blank" rel="noopener noreferrer">rest-api</a></li>
+                    <li><a href="https://github.com/golont/myDiary" target="_blank" rel="noopener noreferrer">front-end</a></li>
+                    <li><a href="https://github.com/golont/myDiaryApi" target="_blank" rel="noopener noreferrer">rest-api</a></li>
                 </ol>
             </div>
         </section>

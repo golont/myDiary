@@ -1,4 +1,4 @@
-# myDairy
+# myDiary
 
 This project is a personal diary, where you can note your thoughts.
 It's created to perfom how I'm building single page application using react/redux.
@@ -7,11 +7,11 @@ It's created to perfom how I'm building single page application using react/redu
 
 ### Deployed project on mongodbstitch:
 
-https://mydairy-ompwn.mongodbstitch.com/about
+https://mydiary-bitse.mongodbstitch.com/about
 
 ### Local:
 
-`git clone https://github.com/golont/myDairy.git`
+`git clone https://github.com/golont/myDiary.git`
 
 install dependencies
 `npm i`
