@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default class UserService {
     __apibase =
-        "https://cors-anywhere.herokuapp.com/https://calm-coast-96117.herokuapp.com/";
+        "https://calm-coast-96117.herokuapp.com/";
 
     getRemainTime = async () => {
         const body = await axios.get(`${this.__apibase}time/`);
